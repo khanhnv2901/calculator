@@ -12,7 +12,7 @@ function multiply(firstNumber, secondNumber){
 
 function divide(firstNumber, secondNumber){
     if (secondNumber === 0) {
-        return 'Error: Division by zero';
+        return  'Error: Divison by Zero!';
     }
     return firstNumber/secondNumber;
 }
@@ -73,16 +73,22 @@ function separateNumbers(expression) {
     const match = expression.match(regex);
 
     if (match) {
-        const firstNumber = match[1];
+        const firstNumber = parseFloat(match[1]);
         const operator = match[2];
-        const secondNumber = match[3];
+        const secondNumber = parseFloat(match[3]);
 
         return {
-            firstNumber: parseFloat(firstNumber),
+            firstNumber: roundNumber(firstNumber),
             operator: operator,
-            secondNumber: parseFloat(secondNumber)
+            secondNumber: roundNumber(secondNumber)
         };
+    } else {
+        return null;
     }
+}
+
+function roundNumber(num, decimalPlaces = 5) {
+    return parseFloat(num.toFixed(decimalPlaces));
 }
 
 numberBtns.forEach(button => {
@@ -115,24 +121,31 @@ clearBtn.addEventListener('click', () => {
 });
 
 equalsBtn.addEventListener('click', () => {
-    // This will be implemented in the next steps
-    console.log('Equals button clicked. Current display value:', displayValue);
 
-    separatedValue = separateNumbers(displayValue);
+    if (displayValue == '') {
+        displayValue += 'Please enter number!';
+        updateDisplay(displayValue);
+        displayValue = '';
+    } else {
+        // This will be implemented in the next steps
+        console.log('Equals button clicked. Current display value:', displayValue);
 
-    if (separatedValue) {
-        console.log("First Number:", separatedValue.firstNumber);
-        console.log("Operator:", separatedValue.operator);
-        console.log("Second Number:", separatedValue.secondNumber);
-      } else {
-        console.log("Invalid expression");
-      }
+        separatedValue = separateNumbers(displayValue);
 
-    result = operate(separatedValue.firstNumber, separatedValue.operator, separatedValue.secondNumber);
-    
-    displayValue += '=' + result;
-    updateDisplay(displayValue);
+        if (separatedValue) {
+            console.log("First Number:", separatedValue.firstNumber);
+            console.log("Operator:", separatedValue.operator);
+            console.log("Second Number:", separatedValue.secondNumber);
+        } else {
+            console.log("Invalid expression");
+        }
 
-    displayValue = '';
+        result = operate(separatedValue.firstNumber, separatedValue.operator, separatedValue.secondNumber);
+        
+        displayValue += '=' + result;
+        updateDisplay(displayValue);
+
+        displayValue = '';
+    }
 });
 
