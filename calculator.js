@@ -17,6 +17,14 @@ function divide(firstNumber, secondNumber){
     return firstNumber/secondNumber;
 }
 
+function exponentiation (firstNumber, secondNumber){
+    return firstNumber ** secondNumber;
+}
+
+function modulus(firstNumber, secondNumber){
+    return firstNumber % secondNumber;
+}
+
 function operate(firstNumber, operator, secondNumber){
     let result;
     
@@ -32,6 +40,12 @@ function operate(firstNumber, operator, secondNumber){
             break;
         case '/':
             result = divide(firstNumber, secondNumber);
+            break;
+        case '**':
+            result = exponentiation(firstNumber, secondNumber);
+            break;
+        case '%':
+            result = modulus(firstNumber, secondNumber);
             break;
     }
 
