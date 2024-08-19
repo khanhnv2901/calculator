@@ -58,6 +58,7 @@ const operatorBtns = document.querySelectorAll('.operator');
 const floatingPointBtn = document.querySelector('.floating-point');
 const clearBtn = document.querySelector('.clear');
 const equalsBtn = document.querySelector('.equals');
+const backSpaceBtn = document.querySelector('.backspace');
 
 let floatingPointAdded = false;
 
@@ -124,6 +125,11 @@ clearBtn.addEventListener('click', () => {
     displayValue = '';
     updateDisplay(displayValue);
 });
+
+backSpaceBtn.addEventListener('click', () => {
+    displayValue = displayValue.substring(0, displayValue.length - 1);
+    updateDisplay(displayValue);
+})
 
 equalsBtn.addEventListener('click', () => {
 

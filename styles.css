@@ -50,5 +50,10 @@ body {
 .buttons button.equals {
     background-color: #43a047;
     color: #fff;
-    grid-column: span 2;
+    grid-column: span 1;
+}
+
+.buttons button.backspace {
+    background-color: #e53935;
+    color: #fff;
 }
