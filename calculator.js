@@ -59,6 +59,8 @@ const floatingPointBtn = document.querySelector('.floating-point');
 const clearBtn = document.querySelector('.clear');
 const equalsBtn = document.querySelector('.equals');
 
+let floatingPointAdded = false;
+
 let displayValue = '';
 let firstNumber = 0;
 let secondNumber = 0;
@@ -110,8 +112,11 @@ operatorBtns.forEach(button => {
 });
 
 floatingPointBtn.addEventListener('click', () => {
-    displayValue += floatingPointBtn.textContent;
-    updateDisplay(displayValue);
+    if (!floatingPointAdded) {
+        displayValue += floatingPointBtn.textContent;
+        updateDisplay(displayValue);
+        floatingPointAdded = true;
+    }
 });
 
 
